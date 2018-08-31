@@ -29,10 +29,8 @@ pipeline {
         }
         stage('Deploy-0.0.2') {
             steps {
-                ansiblePlaybook('playbook.yml') {
-                 become(true)
-                 becomeUser("root")
-                 }
+            ansiblePlaybook become: true, installation: 'tomcat deploy', playbook: 'playbook.yml'
+
             }
         }
 
