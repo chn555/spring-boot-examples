@@ -33,8 +33,8 @@ pipeline {
                  become(true)
                  becomeUser("root")
                  }
-              }
             }
         }
+
     }
 }
