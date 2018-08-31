@@ -1,5 +1,5 @@
 ---
-- hosts: all
+ hosts: all
 
  vars:
   - warName: spring-boot-package-war-{{BUILD_TAG}}.war
