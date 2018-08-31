@@ -5,11 +5,7 @@ pipeline {
 
     agent any
 
-    tools {
-        jdk 'jdk8'
-        maven 'maven3'
-    }
-
+    
     environment {
         PATH = "/usr/bin/ansible:/usr/bin/ansible-playbook:$PATH"
      }
