@@ -2,6 +2,7 @@ pipeline {
 
 
     environment {
+        agent any
         pom = readMavenPom file: 'pom.xml'
         }
 
