@@ -2,8 +2,10 @@
 - hosts: all
 
   vars:
-  - warName: spring-boot-package-war-{{BUILD_TAG}}.war
+  - build: "{{ lookup('env','BUILD_TAG') }}"
+  - warName: spring-boot-package-war-$build.war
   - warRemotePath: /opt/tomcat/webapps/
+
   tasks:
   - name: Ansible copy war to remote server
     copy:
