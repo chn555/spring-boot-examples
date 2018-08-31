@@ -36,7 +36,6 @@ pipeline {
         stage('Deploy-0.0.2') {
             agent any
             steps {
-            sh 'which ansible'
             ansiblePlaybook become: true, installation: 'tomcat deploy', playbook: 'playbook.yml'
 
             }
