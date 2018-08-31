@@ -5,7 +5,12 @@ pipeline {
 
     agent none
 
+
     stages {
+        script {
+                   pom = readMavenPom file: 'pom.xml'
+                   echo pom.version
+              }
         stage('Build-0.0.2') {
             agent {
               docker {

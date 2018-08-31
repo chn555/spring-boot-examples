@@ -3,7 +3,7 @@
 
   vars:
   - build: "{{ lookup('env','BUILD_TAG') }}"
-  - warName: spring-boot-package-war-$build.war
+  - warName: spring-boot-package-war-"{{ build }}".war
   - warRemotePath: /opt/tomcat/webapps/
 
   tasks:
