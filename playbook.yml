@@ -1,24 +1,24 @@
 ---
- hosts: all
+- hosts: all
 
- vars:
+  vars:
   - warName: spring-boot-package-war-{{BUILD_TAG}}.war
   - warRemotePath: /opt/tomcat/webapps/
-
   tasks:
   - name: Ansible copy war to remote server
     copy:
-      src: target/{{ warName }}
-      dest: {{ warRemotePath }}
+      src: target/"{{ warName }}"
+      dest: "{{ warRemotePath }}"
 
   - name: Unzip WAR file
-     unarchive: src={{ warRemotePath }}/{{ warName }} dest=/var/lib/tomcat7/webapps/ROOT/ copy=no mode=0755 owner=tomcat group=tomcat
-     notify:
+    unarchive:
+                src="{{ warRemotePath }}"/"{{ warName }}" dest=/var/lib/tomcat7/webapps/ROOT/
+                copy=no mode=0755
+                owner=tomcat group=tomcat
+    notify:
          - restart tomcat
-
   - name: Delete remote war file
-     file: path={{ warRemotePath }}/{{ warName }} state=absent
-
-   handlers:
-    - name: Restart tomcat
-      service: name=tomcat state=restarted
+    file: path={{ warRemotePath }}/{{ warName }} state=absent
+  - name: Restart tomcat
+    service: name=tomcat
+             state=restarted
