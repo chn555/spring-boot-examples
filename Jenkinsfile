@@ -37,7 +37,7 @@ pipeline {
         stage('Deploy-0.0.2') {
             agent any
             steps {
-            pom = readMavenPom file: 'pom.xml'
+            def pom = readMavenPom file: 'pom.xml'
             ansiblePlaybook (become: true, installation: 'tomcat deploy', extras: '-e Version="{{pom.version}}"', playbook: 'playbook.yml')
 
             }
