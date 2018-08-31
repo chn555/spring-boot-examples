@@ -9,7 +9,7 @@
   tasks:
   - name: ensure tomcat directory exists
     file:
-      path: /opt/tomcat/webapps/spring-boot-{{ Version }}
+      path: /opt/tomcat/webapps/spring-boot-package-war-{{ Version }}
       state: directory
   - name: Ansible copy war to remote server
     copy:
@@ -17,11 +17,11 @@
       dest: "{{ warRemotePath }}"
   - name: ensure tomcat directory exists
     file:
-      path: /opt/tomcat/webapps/spring-boot-{{ Version }}
+      path: /opt/tomcat/webapps/spring-boot-package-war-{{ Version }}
       state: directory
   - name: Unzip WAR file
     unarchive:
-                src={{ warRemotePath }}/{{ warName }} dest=/opt/tomcat/webapps/spring-boot-{{ Version }}
+                src={{ warRemotePath }}/{{ warName }} dest=/opt/tomcat/webapps/spring-boot-package-war-{{ Version }}
                 copy=no mode=0755
                 owner=tomcat group=tomcat
   - name: Delete remote war file
