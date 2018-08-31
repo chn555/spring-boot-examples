@@ -18,7 +18,7 @@ pipeline {
     stages {
         stage('Build-0.0.2') {
             steps {
-                sh 'ln -s ${which java} /var/jenkins_home/tools/hudson.model.JDK/jdk8/bin/java'
+                sh 'which java'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
