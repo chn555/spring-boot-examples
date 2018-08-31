@@ -40,7 +40,7 @@ pipeline {
             script {
                 pom = readMavenPom file: 'pom.xml'
             }
-            sh 'echo ${pom.version}'
+            sh 'echo ${{pom.version}}'
             ansiblePlaybook (become: true, installation: 'tomcat deploy', extras: '-e Version="{{pom.version}}"', playbook: 'playbook.yml')
             }
         }
