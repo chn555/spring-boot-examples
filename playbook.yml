@@ -3,13 +3,13 @@
   sudo: yes
 
   vars:
-  - warName: spring-boot-package-war-{{ Version }}-SNAPSHOT.war
+  - warName: spring-boot-package-war-{{ Version }}.war
   - warRemotePath: /opt/tomcat/webapps/
 
   tasks:
   - name: ensure tomcat directory exists
     file:
-      path: /opt/tomcat/webapps/spring-boot-{{ Version }}-SNAPSHOT
+      path: /opt/tomcat/webapps/spring-boot-{{ Version }}
       state: directory
   - name: Ansible copy war to remote server
     copy:
@@ -17,11 +17,11 @@
       dest: "{{ warRemotePath }}"
   - name: ensure tomcat directory exists
     file:
-      path: /opt/tomcat/webapps/spring-boot-{{ Version }}-SNAPSHOT
+      path: /opt/tomcat/webapps/spring-boot-{{ Version }}
       state: directory
   - name: Unzip WAR file
     unarchive:
-                src={{ warRemotePath }}/{{ warName }} dest=/opt/tomcat/webapps/spring-boot-{{ Version }}-SNAPSHOT
+                src={{ warRemotePath }}/{{ warName }} dest=/opt/tomcat/webapps/spring-boot-{{ Version }}
                 copy=no mode=0755
                 owner=tomcat group=tomcat
   - name: Delete remote war file
