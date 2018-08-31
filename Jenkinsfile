@@ -12,7 +12,7 @@ pipeline {
 
     }
     stages {
-        stage('Build-0.0.2) {
+        stage('Build-0.0.2') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
@@ -25,6 +25,15 @@ pipeline {
                 always {
                     junit 'target/surefire-reports/*.xml'
                 }
+            }
+        }
+        stage('Deploy-0.0.2') {
+            steps {
+                ansiblePlaybook('playbook.yml') {
+                 become(true)
+                 becomeUser("root")
+                 }
+              }
             }
         }
     }
