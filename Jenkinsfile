@@ -1,17 +1,12 @@
 pipeline {
 
 
-    environment {
-         VERSION = "${env.POM_VERSION}"
-         MAVEN_VERSION=`grep A -2 -B 2 "<your_project_name>" pom.xml | grep version | cut -d\> -f 2 | cut -d\< -f 1`-commit-"`echo $GIT_COMMIT`"
-
-    }
 
     agent none
 
 
     stages {
-        stage('Build-${env.POM_VERSION}') {
+        stage('Build-0.0.2') {
             agent {
               docker {
                   image 'maven:3'
@@ -41,9 +36,7 @@ pipeline {
         stage('Deploy-0.0.2') {
             agent any
             steps {
-            sh 'echo ${POM_VERSION}'
-            sh 'echo ${MAVEN_VERSION}'
-            ansiblePlaybook (become: true, installation: 'tomcat deploy', playbook: 'playbook.yml')
+            ansiblePlaybook (become: true, installation: 'tomcat deploy', extras: 'Version = "0.0.2"', playbook: 'playbook.yml')
 
             }
         }
