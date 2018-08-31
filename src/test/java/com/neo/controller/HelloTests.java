@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 public class HelloTests {
 
-	
+
     private MockMvc mvc;
 
     @Before
@@ -33,7 +33,7 @@ public class HelloTests {
     public void getHello() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("Hello World")));
+                .andExpect(content().string(equalTo("Hello World xx")));
     }
 
 }
