@@ -1,17 +1,12 @@
 pipeline {
 
 
-    environment {
-        agent any
-        pom = readMavenPom file: 'pom.xml'
-        }
-
 
     agent none
 
 
     stages {
-        stage('Build-0.0.2') {
+        stage('Build-${POM_VERSION} ') {
             agent {
               docker {
                   image 'maven:3'
