@@ -34,7 +34,13 @@ pipeline {
             }
         }
 
-        
+        stage('Deploy-0.0.2') {
+            agent any
+            steps {
+            ansiblePlaybook (become: true, installation: 'tomcat deploy', extras: '-e Version="0.0.2"', playbook: 'playbook.yml')
+
+            }
+        }
 
     }
 }

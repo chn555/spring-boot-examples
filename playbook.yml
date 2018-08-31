@@ -2,7 +2,7 @@
 - hosts: all
 
   vars:
-  - warName: spring-boot-package-war-"{{ Version }}".war
+  - warName: spring-boot-package-war-"{{ Version }}"-SNAPSHOT.war
   - warRemotePath: /opt/tomcat/webapps/
 
   tasks:
