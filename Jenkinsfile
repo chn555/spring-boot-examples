@@ -15,7 +15,7 @@ pipeline {
             }
             steps {
                 sh 'mvn -B -DskipTests clean package'
-                readMavenPom file: 'pom.xml'   
+                readMavenPom file: 'pom.xml'
             }
         }
         stage('Test-0.0.2') {
@@ -39,8 +39,6 @@ pipeline {
             agent any
             steps
             ansiblePlaybook (become: true, installation: 'tomcat deploy', extras: '-e Version="{{pom.version}}"', playbook: 'playbook.yml')
-
-            }
         }
 
     }
