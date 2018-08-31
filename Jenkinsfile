@@ -9,6 +9,9 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
 
         }
+    environment {
+        PATH = "/usr/bin/ansible:/usr/bin/ansible-playbook:$PATH"
+     }
 
     }
     stages {
