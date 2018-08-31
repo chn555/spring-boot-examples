@@ -3,17 +3,12 @@ pipeline {
 
 
 
-    agent any
-
-    tools {
-        maven 'Maven 3.3.9'
-        jdk 'jdk8'
+    agent {
+      docker {
+          image 'maven:3'
+          args '-v /root/.m2:/root/.m2'
+       }
     }
-
-    environment {
-        PATH = "/usr/bin/ansible:/usr/bin/ansible-playbook:$PATH"
-     }
-
 
     stages {
         stage('Build-0.0.2') {
