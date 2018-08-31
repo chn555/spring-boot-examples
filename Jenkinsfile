@@ -1,12 +1,15 @@
 pipeline {
 
 
+    environment {
+         VERSION = "${env.POM_VERSION}"
+    }
 
     agent none
 
 
     stages {
-        stage('Build-${POM_VERSION} ') {
+        stage('Build-test') {
             agent {
               docker {
                   image 'maven:3'
