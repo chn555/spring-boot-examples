@@ -39,10 +39,9 @@ pipeline {
         stage('Deploy-0.0.2') {
             agent any
             steps {
-            sh 'echo ${env.POM_VERSION}'
             sh 'echo $POM_VERSION'
             sh 'ehco ${POM_VERSION}'
-            
+
             ansiblePlaybook (become: true, installation: 'tomcat deploy', playbook: 'playbook.yml')
 
             }
