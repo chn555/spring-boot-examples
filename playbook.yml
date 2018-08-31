@@ -1,19 +1,20 @@
 ---
 - hosts: all
+  sudo: yes
 
   vars:
-  - warName: spring-boot-package-war-"{{ Version }}"-SNAPSHOT.war
+  - warName: spring-boot-package-war-{{ Version }}-SNAPSHOT.war
   - warRemotePath: /opt/tomcat/webapps/
 
   tasks:
   - name: Ansible copy war to remote server
     copy:
-      src: target/"{{ warName }}"
+      src: target/{{ warName }}
       dest: "{{ warRemotePath }}"
 
   - name: Unzip WAR file
     unarchive:
-                src="{{ warRemotePath }}"/"{{ warName }}" dest=/var/lib/tomcat7/webapps/ROOT/
+                src="{{ warRemotePath }}"/"{{ warName }}" dest=/opt/tomcat/webapps/ROOT/
                 copy=no mode=0755
                 owner=tomcat group=tomcat
     notify:
