@@ -1,14 +1,17 @@
 pipeline {
 
-    agent any {
+    agent any
+
+    environment {
+       VERSION = readMavenPom().getVersion()
+    }
+
+
+    agent {
         docker {
             image 'maven:3-alpine'
             args '-v /root/.m2:/root/.m2'
         }
-
-       environment {
-          VERSION = readMavenPom().getVersion()
-       }
     }
     stages {
         stage('Build-$VERSION') {
