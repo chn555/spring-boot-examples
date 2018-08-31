@@ -15,7 +15,7 @@ pipeline {
             }
             steps {
                 sh 'mvn -B -DskipTests clean package'
-                readMavenPom file: 'pom.xml'
+                pom = readMavenPom file: 'pom.xml'
             }
         }
         stage('Test-0.0.2') {
