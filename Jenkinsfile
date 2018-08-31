@@ -12,12 +12,12 @@ pipeline {
 
     }
     stages {
-        stage('Build-${env.BUILD_ID}) {
+        stage('Build-0.0.2) {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-        stage('Test-${env.BUILD_ID}') {
+        stage('Test-0.0.2') {
             steps {
                 sh 'mvn test'
             }
