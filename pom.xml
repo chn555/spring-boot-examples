@@ -21,9 +21,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
-	</properties>
-
-	<properties>
 	   <version.number>${git.commit.time}.${git.commit.id.abbrev}</version.number>
 	</properties>
 
