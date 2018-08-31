@@ -9,7 +9,7 @@ pipeline {
 
 
     stages {
-        stage('Build-test') {
+        stage('Build-${env.POM_VERSION}') {
             agent {
               docker {
                   image 'maven:3'
