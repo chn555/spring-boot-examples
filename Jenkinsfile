@@ -3,6 +3,8 @@ pipeline {
 
     environment {
          VERSION = "${env.POM_VERSION}"
+         MAVEN_VERSION=`grep A -2 -B 2 "<your_project_name>" pom.xml | grep version | cut -d\> -f 2 | cut -d\< -f 1`-commit-"`echo $GIT_COMMIT`"
+
     }
 
     agent none
@@ -40,7 +42,7 @@ pipeline {
             agent any
             steps {
             sh 'echo ${POM_VERSION}'
-
+            sh 'echo ${MAVEN_VERSION}'
             ansiblePlaybook (become: true, installation: 'tomcat deploy', playbook: 'playbook.yml')
 
             }
