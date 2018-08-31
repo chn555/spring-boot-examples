@@ -9,7 +9,7 @@ pipeline {
         maven 'Maven 3.3.9'
         jdk 'jdk8'
     }
-    
+
     environment {
         PATH = "/usr/bin/ansible:/usr/bin/ansible-playbook:$PATH"
      }
@@ -18,6 +18,7 @@ pipeline {
     stages {
         stage('Build-0.0.2') {
             steps {
+                sh 'try : ln -s ${which java} /var/jenkins_home/tools/hudson.model.JDK/jdk8/bin/java'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
