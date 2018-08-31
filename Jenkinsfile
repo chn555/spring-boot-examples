@@ -6,7 +6,7 @@ pipeline {
 
 
     stages {
-        stage('Build-0.0.2') {
+        stage("Build-${pom.version}") {
             agent {
               docker {
                   image 'maven:3'
@@ -17,7 +17,7 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-        stage('Test-0.0.2') {
+        stage("Test-$JOB_NAME") {
             agent {
               docker {
                   image 'maven:3'
@@ -34,7 +34,7 @@ pipeline {
             }
         }
 
-        stage('Deploy-0.0.2') {
+        stage('Deploy-$JOB_NAME') {
             agent any
             steps {
             script {
