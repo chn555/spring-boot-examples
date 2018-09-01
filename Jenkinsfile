@@ -7,7 +7,7 @@ pipeline {
 
     stages {
 
-	stage('checkout-0.0.3') {
+	stage('checkout') {
 	    agent any
             steps {
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions:
@@ -15,7 +15,7 @@ pipeline {
             }
 	}
 
-        stage('Build-0.0.3') {
+        stage('Build') {
             agent {
               docker {
                   image 'maven:3'
@@ -26,7 +26,7 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-        stage('Test-0.0.3') {
+        stage('Test') {
             agent {
               docker {
                   image 'maven:3'
@@ -43,7 +43,7 @@ pipeline {
             }
         }
 
-        stage('Deploy-0.0.3') {
+        stage('Deploy') {
             agent any
             steps {
             script {
