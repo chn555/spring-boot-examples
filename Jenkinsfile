@@ -10,10 +10,10 @@ pipeline {
 	stage('checkout-0.0.3') {
 	    agent any
             steps {
-		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: 
+		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions:
 		[], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/chn555/spring-boot-examples']]])
-            {
-	{		
+            }
+	}
 
         stage('Build-0.0.3') {
             agent {
